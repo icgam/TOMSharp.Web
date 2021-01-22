@@ -1,0 +1,59 @@
+<!--
+    Copyright (C) 2021 Intermediate Capital Group
+    
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+    
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+
+<div class="container-flex">
+  <div class="row">
+    <div class="col">
+      <h2 style="margin: auto">Sprints</h2>
+    </div>
+    <div class="col">
+      <button class="btn btn-danger btn-lg" role="button" (click)="addSprint()">Add Sprint</button>
+    </div>
+    <div class="col">
+      <button class="btn btn-warning btn-lg" role="button" (click)="generateSprints()">Generate Sprints</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <table class="table table-sm table-hover">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col" class="hidden">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Start Date</th>
+            <th scope="col">End Date</th>
+            <th scope="col">Finance Month</th>
+            <th scope="col">&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let sprint of sprints">
+          <td class="hidden">{{sprint.id}}</td>
+          <td>{{sprint.name}}</td>
+          <td>{{sprint.startDate | date: 'dd/MM/yyyy'}}</td>
+          <td>{{sprint.endDate | date: 'dd/MM/yyyy'}}</td>
+          <td>{{sprint.financeMonth}}</td>
+          <td>
+            <button class="btn btn-success" (click)="editSprint(sprint)" style="margin-left: 20px;">Edit</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,71 @@
+<!--
+    Copyright (C) 2021 Intermediate Capital Group
+    
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+    
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+
+<div class="container">
+    <div class="jumbotron">
+        <h1 class="display-4">TOM Sharp</h1>
+        <p class="lead">Utility for managing data from Toggl, associated metadata and producing reports.</p>
+        <hr class="my-4">
+    </div>
+    <div class="col">
+        <label for="financeYearSelect">Finance Year:</label>
+        <select class="form-control" id="financeYear" [(ngModel)]="financeYear" (change)="downloadSprintSummaries()">
+            <option>Choose Finance Year</option>
+            <option *ngFor="let year of financeYears">{{year}}</option>
+        </select>
+    </div>
+    <div class="row">
+        <div class="col">
+            <table class="table table-sm table-hover">
+                <thead  class="thead-light">
+                    <tr>
+                        <th>Sprint name</th>
+                        <th>Finance Month</th>
+                        <th>From</th>
+                        <th>To</th>
+                        <th class="text-right">FTE</th>
+                        <th class="text-right">People</th>
+                        <th class="text-right">Charge</th>
+                        <th class="text-right">Exceptions</th>
+                        <th>Last Updated</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>
+                <tr *ngFor="let sprint of sprints">
+                    <td>{{sprint.name}}</td>
+                    <td>{{sprint.financeMonth}}</td>
+                    <td>{{sprint.startDate | date: 'dd/MM/yyyy'}}</td>
+                    <td>{{sprint.endDate | date: 'dd/MM/yyyy'}}</td>
+                    <td class="text-right">{{sprint.fte | number:'1.2-2'}}</td>
+                    <td class="text-right">{{sprint.people}}</td>
+                    <td class="text-right">{{sprint.charge | currency:'GBP'}}</td>
+                    <td class="text-right"><a [routerLink]="['/time-booking-exceptions', sprint.name]">{{sprint.exceptionCount}}</a></td>
+                    <td>{{sprint.lastUpdated | date: 'dd/MM/yyyy HH:mm'}}</td>
+                    <td>
+                            <fa-icon [icon]="faSync" (click)="downloadSprint(sprint.name)" [ngClass]="{'disabled': buttonsDisabled}" style="cursor: pointer;"></fa-icon>
+                        
+                    </td>
+                </tr>
+            </table>
+
+
+        </div>
+
+    </div>
+
+</div>

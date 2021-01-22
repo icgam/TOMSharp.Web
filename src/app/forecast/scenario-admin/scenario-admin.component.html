@@ -1,0 +1,56 @@
+<!--
+    Copyright (C) 2021 Intermediate Capital Group
+    
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+    
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+
+<div class="user-container">
+    <h2 style="margin: auto">Scenarios</h2>
+    <table class="table table-sm table-hover">
+      <thead class="thead-light">
+      <tr>
+        <th class="hidden">Id</th>
+        <th>Finance Year</th>
+        <th>Name</th>
+        <th>Created</th>
+        <th>Updated</th>
+        <th>&nbsp;</th>
+      </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td>
+                <fa-icon [icon]="faPlus" style="cursor: pointer;"></fa-icon>
+                <input type="text" class="form-control mx-sm-3" placeholder="Enter new scenario name" (change)="createNewScenario($event)"/>
+            </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+      <tr *ngFor="let scenario of scenarios">
+        <td class="hidden">{{scenario.id}}</td>
+        <td>{{scenario.financeYear}}</td>
+        <td>{{scenario.name}}</td>
+        <td>{{scenario.created | date: 'dd/MM/yyyy'}}</td>
+        <td>{{scenario.updated | date: 'dd/MM/yyyy'}}</td>
+        <td>
+            <a [routerLink]="['/scenario-edit', scenario.id]"><fa-icon [icon]="faEllipsisH" style="cursor: pointer;" ngbTooltip="Edit scenario details"></fa-icon></a> &nbsp;
+            <fa-icon [icon]="faTimesCircle" (click)="deleteScenario(scenario)" style="cursor: pointer;" ngbTooltip="Delete this scenario" class="red"></fa-icon>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>

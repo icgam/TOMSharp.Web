@@ -1,0 +1,98 @@
+<!--
+    Copyright (C) 2021 Intermediate Capital Group
+    
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+    
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <div class="display-4">
+                Scenario: 
+                <a [routerLink]="['/scenario-admin']">{{scenario?.name}}</a>
+                &nbsp;
+                <a (click)="saveScenario()"><fa-icon [icon]="faSave" style="cursor: pointer;" ngbTooltip="Save scenario"></fa-icon></a>
+                &nbsp;
+                <a (click)="reloadScenario()"><fa-icon [icon]="faUndo" style="cursor: pointer;" ngbTooltip="Undo changes"></fa-icon></a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h6>Available forecasts</h6>
+            <ul class="list-group overflow-auto" style="height: 500px">
+                <ng-template ngFor let-forecast [ngForOf]="forecasts">
+                    <li class="list-group-item" *ngIf="!selectedForecastIds.includes(forecast.id)">
+                        <a (click)="addForecastToScenario(forecast)">
+                            <fa-icon [icon]="faPlus" style="cursor: pointer;" ngbTooltip="Add forecast to scenario"></fa-icon>
+                        </a>
+                        &nbsp;{{forecast.name}}
+                    </li>
+                </ng-template>
+            </ul>
+        </div>
+        <div class="col">
+            <h6>Selected forecasts</h6>
+            <ul class="list-group overflow-auto" style="height: 500px">
+                <li class="list-group-item active">Actual Time Bookings</li>
+                <li class="list-group-item" *ngFor="let forecast of (scenario?scenario.forecasts:null); let i = index">
+                    <fa-icon [icon]="faArrowUp" style="cursor: pointer;color: grey;" *ngIf="i == 0"></fa-icon>
+                    <a (click)="moveForecastUp(i)" *ngIf="i > 0">
+                        <fa-icon [icon]="faArrowUp" style="cursor: pointer;" ngbTooltip="Move forecast up in priority"></fa-icon>
+                    </a>
+                    <fa-icon [icon]="faArrowDown" style="cursor: pointer;color: grey;" *ngIf="i >= scenario.forecasts.length-1"></fa-icon>
+                    <a (click)="moveForecastDown(i)">
+                        <fa-icon [icon]="faArrowDown" style="cursor: pointer;" ngbTooltip="Move forecast down in priority" *ngIf="i < scenario.forecasts.length-1"></fa-icon>
+                    </a>
+                    {{forecast.name}}
+                    <div class="float-right">
+                        <a (click)="removeForecastFromScenario(i)">
+                            <fa-icon [icon]="faWindowClose" style="cursor: pointer;" ngbTooltip="Remove forecast from scenario" class="red"></fa-icon>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="col">
+            &nbsp;
+        </div>
+        <div class="col">
+            <h6>Available projects</h6>
+            <ul class="list-group overflow-auto" style="height: 500px">
+                <ng-template ngFor let-project [ngForOf]="fullListOfProjects">
+                    <li class="list-group-item" *ngIf="!scenario.projects.includes(project)">
+                        <a (click)="addProjectToScenario(project)">
+                            <fa-icon [icon]="faPlus" style="cursor: pointer;" ngbTooltip="Add project to scenario"></fa-icon>
+                        </a>
+                        &nbsp;{{project}}
+                    </li>
+                </ng-template>
+            </ul>
+        </div>
+        <div class="col">
+            <h6>Selected projects</h6>
+            <ul class="list-group overflow-auto" style="height: 500px">
+                <li class="list-group-item" *ngFor="let project of (scenario?scenario.projects:null); let i = index">
+                    {{project}}
+                    <div class="float-right">
+                        <a (click)="removeProjectFromScenario(i)">
+                            <fa-icon [icon]="faWindowClose" style="cursor: pointer;" ngbTooltip="Remove project from scenario" class="red"></fa-icon>
+                        </a>
+                    </div>
+                </li>
+              </ul>
+        </div>
+    </div>
+</div>

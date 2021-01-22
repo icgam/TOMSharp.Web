@@ -1,0 +1,59 @@
+<!--
+    Copyright (C) 2021 Intermediate Capital Group
+    
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+    
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+
+<!-- A grey horizontal navbar that becomes vertical on small screens -->
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <a class="navbar-brand" href="#">TOMSharp</a>
+    <!-- Links -->
+    <ul class="nav navbar-nav" routerLinkActive="active">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="dashboard" routerLinkActive="active">Dashboard</a>
+      </li>
+      <li ngbDropdown class="nav-item">
+        <a href (click)="false" class="nav-link" ngbDropdownToggle>Forecasting</a>
+        <div ngbDropdownMenu>
+          <button ngbDropdownItem routerLink="scenario-admin" routerLinkActive="active">Scenario Setup</button>
+          <button ngbDropdownItem routerLink="forecast-admin" routerLinkActive="active">Forecast Setup</button>
+        </div>
+      </li>
+      <li ngbDropdown class="nav-item">
+        <a href (click)="false" class="nav-link" ngbDropdownToggle>Reports</a>
+        <div ngbDropdownMenu>
+          <button ngbDropdownItem routerLink="time-booking-exceptions" routerLinkActive="active">Time Booking Exceptions</button>
+          <button ngbDropdownItem routerLink="finance-report" routerLinkActive="active">Finance Report</button>
+          <button ngbDropdownItem routerLink="time-booking-summary" routerLinkActive="active">Time Booking Summary</button>
+          <button ngbDropdownItem routerLink="contractor-capitalisation-summary" routerLinkActive="active">Contractor Capitalisation Summary</button>
+          <button ngbDropdownItem routerLink="time-entry-report" routerLinkActive="active">Time Entry Report</button>
+        </div>
+      </li>
+      <li ngbDropdown class="nav-item">
+        <a href (click)="false" class="nav-link" ngbDropdownToggle>Setup</a>
+        <div ngbDropdownMenu>
+          <button ngbDropdownItem routerLink="list-people" routerLinkActive="active">People</button>
+          <button ngbDropdownItem routerLink="list-projects" routerLinkActive="active">Projects</button>
+          <button ngbDropdownItem routerLink="list-budget-lines" routerLinkActive="active">Budget Lines</button>
+          <button ngbDropdownItem routerLink="list-sprints" routerLinkActive="active">Sprints</button>
+          <button ngbDropdownItem routerLink="list-finance-project-mappings" routerLinkActive="active">Project Mappings</button>
+        </div>
+      </li>
+    </ul>
+    <span class="navbar-text ml-auto">
+      {{user?.name}}
+      {{appConfig.version.releaseNumber}}
+    </span>
+</nav>

@@ -1,0 +1,88 @@
+<!--
+    Copyright (C) 2021 Intermediate Capital Group
+    
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+    
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+
+<div class="container-flex">
+    <div class="row">
+        <div class="col">
+            <div class="display-4">
+                Forecast Entry: 
+                <a [routerLink]="['/forecast-admin']">{{forecast?.name}}</a>
+                &nbsp;
+                <a (click)="saveForecast()"><fa-icon [icon]="faSave" style="cursor: pointer;" ngbTooltip="Save forecast"></fa-icon></a>
+                &nbsp;
+                <a (click)="reloadForecast()"><fa-icon [icon]="faUndo" style="cursor: pointer;" ngbTooltip="Undo changes"></fa-icon></a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            Enter time by: 
+            <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioTimeEntry" [(ngModel)]="enterByFTE">
+                <label ngbButtonLabel class="btn-primary">
+                    <input ngbButton type="radio" [value]="false"> Hours
+                </label>
+                <label ngbButtonLabel class="btn-primary">
+                    <input ngbButton type="radio" value="true"> FTE
+                </label>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col">
+            <select #addProjectSelect class="custom-select" (change)="addProject($event)">
+                <option selected>Add project to forecast...</option>
+                <option *ngFor="let projectName of fullListOfProjects">{{projectName}}</option>
+            </select> 
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col">
+            <table class="table table-sm table-responsive table-fit">
+                <thead  class="thead-light">
+                    <tr>
+                        <th>Project Name</th>
+                        <th *ngFor="let sprint of sprints" class="col">
+                            <span ngbTooltip="{{sprint.startDate|date: 'dd/MM/yyyy'}} to {{sprint.endDate|date: 'dd/MM/yyyy'}}">{{sprint.name}}</span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-template ngFor let-project [ngForOf]="projects" let-odd="odd">
+                        <tr [class.odd]="odd">
+                            <td [attr.colspan]="sprints.length+1">
+                                {{project}}
+                                <a (click)="removeProject(project)"><fa-icon class="red" [icon]="faWindowClose" style="cursor: pointer;" ngbTooltip="Remove project from forecast"></fa-icon></a>
+                            </td>
+                        </tr>
+                        <tr [class.odd]="odd">
+                            <td class="text-right">{{projectTotals[project] | currency:'GBP':'symbol':'4.0-0'}}</td>
+                            <td *ngFor="let sprint of sprints">
+                                <input *ngIf="!enterByFTE" type="text" class="form-control form-control-sm" placeholder="0" (change)="updateEntry($event, project, sprint)" value="{{displayEntries[project][sprint.name]?.hours}}"/>
+                                <input *ngIf="enterByFTE" type="text" class="form-control form-control-sm" placeholder="0" (change)="updateEntry($event, project, sprint)" value="{{displayEntries[project][sprint.name]?.fte}}"/>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,34 @@
+{
+    "baseApiUrl": "https://localhost:5001",
+    "auth": {
+      "clientId": "---",
+      "authority": "---",
+      "validateAuthority": true,
+      "redirectUri": "http://localhost:4200",
+      "postLogoutRedirectUri": "http://localhost:4200",
+      "navigateToLoginRequestUrl": true
+    },
+    "cache": {
+      "cacheLocation": "localStorage"
+    },
+    "scopes": {
+      "loginRequest": ["openid", "profile"]
+    },
+    "resources": {
+      "tomSharpApi": {
+        "resourceUri": "https://localhost:5001",
+        "resourceScope": "---"
+      },
+      "graphApi": {
+        "resourceUri": "https://graph.microsoft.com/v1.0/users",
+        "resourceScope": "User.Read.All"
+      }
+    },
+    "version": {
+      "releaseId": "Dev-000",
+      "releaseNumber": "0.0.0",
+      "releaseNotes": "Dev Build Only",
+      "releaseCreated": "Tuesday 10th September 1:23 PM"
+    }
+
+  }
