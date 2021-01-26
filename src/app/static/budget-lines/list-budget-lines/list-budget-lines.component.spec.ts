@@ -16,20 +16,44 @@
 **/
 
 
+import { HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { AgGridModule } from 'ag-grid-angular';
+import { ToastrModule } from 'ngx-toastr';
+import { AppConfig } from 'src/app/app-config';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ListBudgetLinesComponent } from './list-budget-lines.component';
 
 describe('ListBudgetLinesComponent', () => {
   let component: ListBudgetLinesComponent;
   let fixture: ComponentFixture<ListBudgetLinesComponent>;
-
+  let appConfig: AppConfig = {
+    baseApiUrl: '',
+    auth: null,
+    cache: null,
+    scopes: null,
+    resources: null,
+    version: null
+  };
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ListBudgetLinesComponent ]
+      declarations: [ ListBudgetLinesComponent],
+      imports: [
+        AgGridModule,
+        HttpClientModule,
+        ToastrModule.forRoot(),
+        FontAwesomeModule
+      ],
+      providers: [
+        {
+          provide: AppConfig,
+          useValue: appConfig
+        }
+      ]
     })
     .compileComponents();
   }));
+
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ListBudgetLinesComponent);
@@ -40,4 +64,5 @@ describe('ListBudgetLinesComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });

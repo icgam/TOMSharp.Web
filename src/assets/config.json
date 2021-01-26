@@ -1,34 +1,34 @@
 {
-    "baseApiUrl": "https://localhost:5001",
-    "auth": {
-      "clientId": "---",
-      "authority": "---",
-      "validateAuthority": true,
-      "redirectUri": "http://localhost:4200",
-      "postLogoutRedirectUri": "http://localhost:4200",
-      "navigateToLoginRequestUrl": true
+  "baseApiUrl": "https://localhost:5001",
+  "auth": {
+    "clientId": "ddf4a6ae-2af7-4ec8-b213-e3d5f031f47d",
+    "authority": "https://login.microsoftonline.com/31d4ce72-dfb2-4be8-b876-3278f8641754",
+    "validateAuthority": true,
+    "redirectUri": "http://localhost:4200",
+    "postLogoutRedirectUri": "http://localhost:4200",
+    "navigateToLoginRequestUrl": true
+  },
+  "cache": {
+    "cacheLocation": "localStorage"
+  },
+  "scopes": {
+    "loginRequest": ["openid", "profile"]
+  },
+  "resources": {
+    "tomSharpApi": {
+      "resourceUri": "https://localhost:5001",
+      "resourceScope": "api://99be4aed-ec85-478b-8dda-fa90ca740cfd/User_Impersonation"
     },
-    "cache": {
-      "cacheLocation": "localStorage"
-    },
-    "scopes": {
-      "loginRequest": ["openid", "profile"]
-    },
-    "resources": {
-      "tomSharpApi": {
-        "resourceUri": "https://localhost:5001",
-        "resourceScope": "---"
-      },
-      "graphApi": {
-        "resourceUri": "https://graph.microsoft.com/v1.0/users",
-        "resourceScope": "User.Read.All"
-      }
-    },
-    "version": {
-      "releaseId": "Dev-000",
-      "releaseNumber": "0.0.0",
-      "releaseNotes": "Dev Build Only",
-      "releaseCreated": "Tuesday 10th September 1:23 PM"
+    "graphApi": {
+      "resourceUri": "https://graph.microsoft.com/v1.0/users",
+      "resourceScope": "User.Read.All"
     }
-
+  },
+  "version": {
+    "releaseId": "Dev-000",
+    "releaseNumber": "0.0.0",
+    "releaseNotes": "Dev Build Only",
+    "releaseCreated": "Tuesday 10th September 1:23 PM"
   }
+
+}

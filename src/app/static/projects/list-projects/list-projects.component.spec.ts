@@ -16,20 +16,43 @@
 **/
 
 
+import { HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { AgGridModule } from 'ag-grid-angular';
+import { ToastrModule } from 'ngx-toastr';
+import { AppConfig } from 'src/app/app-config';
+import { CommsService } from 'src/app/comms.service';
 import { ListProjectsComponent } from './list-projects.component';
 
 describe('ListProjectsComponent', () => {
   let component: ListProjectsComponent;
   let fixture: ComponentFixture<ListProjectsComponent>;
-
+  let appConfig: AppConfig = {
+    baseApiUrl: '',
+    auth: null,
+    cache: null,
+    scopes: null,
+    resources: null,
+    version: null
+  };
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ListProjectsComponent ]
+      declarations: [ ListProjectsComponent],
+      imports: [
+        AgGridModule,
+        HttpClientModule,
+        ToastrModule.forRoot()
+      ],
+      providers: [
+        {
+          provide: AppConfig,
+          useValue: appConfig
+        }
+      ]
     })
     .compileComponents();
   }));
+
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ListProjectsComponent);

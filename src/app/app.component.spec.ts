@@ -16,19 +16,62 @@
 **/
 
 
+import { HttpClientModule } from '@angular/common/http';
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { HeaderComponent } from './header/header.component';
+import { AppConfig } from './app-config';
 import { AppComponent } from './app.component';
+import {
+  AUTH_SERVICE,
+  AuthService
+} from './framework';
+import { ToastrModule } from 'ngx-toastr';
+
+
 
 describe('AppComponent', () => {
+
+  let appConfig: AppConfig = {
+    baseApiUrl: '',
+    auth: null,
+    cache: null,
+    scopes: null,
+    resources: null,
+    version: null
+  };
+
+  let mockAuthService: AuthService = {
+    login: null,
+    consent: null,
+    acquireTokenSilent: null,
+    clearCacheForScope: null,
+    getScopesForEndpoint: null,
+    currentUser: null
+  };
+
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        HttpClientModule,
+        ToastrModule.forRoot()
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        HeaderComponent
       ],
+      providers: [
+        {
+          provide: AUTH_SERVICE,
+          useValue: mockAuthService
+        },
+        {
+          provide: AppConfig,
+          useValue: appConfig
+        }
+      ]
     }).compileComponents();
   }));
 
