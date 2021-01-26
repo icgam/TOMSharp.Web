@@ -16,20 +16,47 @@
 **/
 
 
+import { HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AgGridModule } from 'ag-grid-angular';
+import { ToastrModule } from 'ngx-toastr';
+import { AppConfig } from 'src/app/app-config';
 
 import { TimeEntryReportComponent } from './time-entry-report.component';
 
 describe('TimeEntryReportComponent', () => {
   let component: TimeEntryReportComponent;
   let fixture: ComponentFixture<TimeEntryReportComponent>;
-
+  let appConfig: AppConfig = {
+    baseApiUrl: '',
+    auth: null,
+    cache: null,
+    scopes: null,
+    resources: null,
+    version: null
+  };
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TimeEntryReportComponent ]
+      declarations: [ TimeEntryReportComponent],
+      imports: [
+        AgGridModule,
+        HttpClientModule,
+        ToastrModule.forRoot(),
+        FontAwesomeModule,
+        FormsModule
+      ],
+      providers: [
+        {
+          provide: AppConfig,
+          useValue: appConfig
+        }
+      ]
     })
     .compileComponents();
   }));
+
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TimeEntryReportComponent);
@@ -37,7 +64,7 @@ describe('TimeEntryReportComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  fit('should create', () => {
     expect(component).toBeTruthy();
   });
 });

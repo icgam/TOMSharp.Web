@@ -58,7 +58,6 @@ import {
   BroadcastService,
 } from '@azure/msal-angular';
 import { TimeBookingExceptionsComponent } from './reports/time-booking-exceptions/time-booking-exceptions.component';
-import { GridComponentComponent } from './grid-component/grid-component.component';
 import { ForecastAdminComponent } from './forecast/forecast-admin/forecast-admin.component';
 import { EditForecastEntriesComponent } from './forecast/edit-forecast-entries/edit-forecast-entries.component';
 import { ScenarioAdminComponent } from './forecast/scenario-admin/scenario-admin.component';
@@ -132,7 +131,6 @@ export function authFactory(msal: MsalService, http: HttpClient): AuthService {
     ListFinanceProjectMappingsComponent,
     ContractorCapitalisationSummaryComponent,
     TimeBookingExceptionsComponent,
-    GridComponentComponent,
     ForecastAdminComponent,
     EditForecastEntriesComponent,
     ScenarioAdminComponent,

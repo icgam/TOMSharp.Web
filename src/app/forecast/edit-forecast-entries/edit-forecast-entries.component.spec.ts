@@ -16,7 +16,14 @@
 **/
 
 
+import { HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrModule } from 'ngx-toastr';
+import { AppConfig } from 'src/app/app-config';
 
 import { EditForecastEntriesComponent } from './edit-forecast-entries.component';
 
@@ -24,9 +31,31 @@ describe('EditForecastEntriesComponent', () => {
   let component: EditForecastEntriesComponent;
   let fixture: ComponentFixture<EditForecastEntriesComponent>;
 
+  let appConfig: AppConfig = {
+    baseApiUrl: '',
+    auth: null,
+    cache: null,
+    scopes: null,
+    resources: null,
+    version: null
+  };
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditForecastEntriesComponent ]
+      declarations: [ EditForecastEntriesComponent ],
+      imports: [
+        FontAwesomeModule,
+        RouterTestingModule,
+        HttpClientModule,
+        ToastrModule.forRoot(),
+        FormsModule,
+        NgbModule
+      ],
+      providers: [
+        {
+          provide: AppConfig,
+          useValue: appConfig
+        }
+      ]
     })
     .compileComponents();
   }));

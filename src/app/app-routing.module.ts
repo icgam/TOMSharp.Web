@@ -27,7 +27,6 @@ import { FinanceReportComponent } from './reports/finance-report/finance-report.
 import { TimeBookingSummaryComponent } from './reports/time-booking-summary/time-booking-summary.component';
 import { ContractorCapitalisationSummaryComponent } from './reports/contractor-capitalisation-summary/contractor-capitalisation-summary.component';
 import { TimeBookingExceptionsComponent } from './reports/time-booking-exceptions/time-booking-exceptions.component';
-import { GridComponentComponent } from './grid-component/grid-component.component';
 import { ForecastAdminComponent } from './forecast/forecast-admin/forecast-admin.component';
 import { EditForecastEntriesComponent } from './forecast/edit-forecast-entries/edit-forecast-entries.component';
 import { ScenarioAdminComponent } from './forecast/scenario-admin/scenario-admin.component';
@@ -75,9 +74,6 @@ const routes: Routes = [ {
   }, {
     path: 'contractor-capitalisation-summary',
     component: ContractorCapitalisationSummaryComponent
-  }, {
-    path: 'grid',
-    component: GridComponentComponent
   }, {
     path: 'forecast-admin',
     component: ForecastAdminComponent

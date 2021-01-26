@@ -16,7 +16,12 @@
 **/
 
 
+import { HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ToastrModule } from 'ngx-toastr';
+import { AppConfig } from 'src/app/app-config';
 
 import { ScenarioAdminComponent } from './scenario-admin.component';
 
@@ -24,9 +29,29 @@ describe('ScenarioAdminComponent', () => {
   let component: ScenarioAdminComponent;
   let fixture: ComponentFixture<ScenarioAdminComponent>;
 
+  let appConfig: AppConfig = {
+    baseApiUrl: '',
+    auth: null,
+    cache: null,
+    scopes: null,
+    resources: null,
+    version: null
+  };
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ScenarioAdminComponent ]
+      declarations: [ ScenarioAdminComponent ],
+      imports: [
+        FontAwesomeModule,
+        RouterTestingModule,
+        HttpClientModule,
+        ToastrModule.forRoot()
+      ],
+      providers: [
+        {
+          provide: AppConfig,
+          useValue: appConfig
+        }
+      ]
     })
     .compileComponents();
   }));

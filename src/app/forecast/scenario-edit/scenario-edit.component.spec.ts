@@ -16,17 +16,41 @@
 **/
 
 
+import { HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ToastrModule } from 'ngx-toastr';
+import { AppConfig } from 'src/app/app-config';
 
 import { ScenarioEditComponent } from './scenario-edit.component';
 
 describe('ScenarioEditComponent', () => {
   let component: ScenarioEditComponent;
   let fixture: ComponentFixture<ScenarioEditComponent>;
-
+  let appConfig: AppConfig = {
+    baseApiUrl: '',
+    auth: null,
+    cache: null,
+    scopes: null,
+    resources: null,
+    version: null
+  };
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ScenarioEditComponent ]
+      declarations: [ ScenarioEditComponent ],
+      imports: [
+        FontAwesomeModule,
+        RouterTestingModule,
+        HttpClientModule,
+        ToastrModule.forRoot()
+      ],
+      providers: [
+        {
+          provide: AppConfig,
+          useValue: appConfig
+        }
+      ]
     })
     .compileComponents();
   }));

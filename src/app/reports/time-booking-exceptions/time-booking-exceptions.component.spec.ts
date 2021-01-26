@@ -16,20 +16,49 @@
 **/
 
 
+import { HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AgGridModule } from 'ag-grid-angular';
+import { ToastrModule } from 'ngx-toastr';
+import { AppConfig } from 'src/app/app-config';
 
 import { TimeBookingExceptionsComponent } from './time-booking-exceptions.component';
 
 describe('TimeBookingExceptionsComponent', () => {
   let component: TimeBookingExceptionsComponent;
   let fixture: ComponentFixture<TimeBookingExceptionsComponent>;
-
+  let appConfig: AppConfig = {
+    baseApiUrl: '',
+    auth: null,
+    cache: null,
+    scopes: null,
+    resources: null,
+    version: null
+  };
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TimeBookingExceptionsComponent ]
+      declarations: [ TimeBookingExceptionsComponent],
+      imports: [
+        RouterTestingModule,
+        AgGridModule,
+        HttpClientModule,
+        ToastrModule.forRoot(),
+        FontAwesomeModule,
+        FormsModule
+      ],
+      providers: [
+        {
+          provide: AppConfig,
+          useValue: appConfig
+        }
+      ]
     })
     .compileComponents();
   }));
+
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TimeBookingExceptionsComponent);
