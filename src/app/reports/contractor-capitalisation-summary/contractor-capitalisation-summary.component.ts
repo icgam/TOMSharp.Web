@@ -46,7 +46,7 @@ export class ContractorCapitalisationSummaryComponent implements OnInit {
 
   chopOffSprint(sprintName: string): string {
     if (sprintName?.indexOf(' ') > -1) {
-      return sprintName.split(' ')[1];
+      return sprintName.slice(sprintName.indexOf(' ') + 1);
     } else {
       return sprintName;
     }
