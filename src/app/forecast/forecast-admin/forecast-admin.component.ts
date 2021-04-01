@@ -36,7 +36,7 @@ export class ForecastAdminComponent implements OnInit {
   showSnapshotForm = false;
   months: number;
   extrapolateRemainingTime = false;
-  financeYears: string[] = [ 'FY20', 'FY21'];
+  financeYears: string[] = [ 'FY20', 'FY21', 'FY22'];
   financeYear = 'FY21';
   scenario: Scenario;
   scenarios: Scenario[];

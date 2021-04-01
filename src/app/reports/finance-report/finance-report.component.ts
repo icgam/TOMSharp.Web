@@ -17,7 +17,7 @@
 
 
 import { Component, OnInit } from '@angular/core';
-import { FinanceSummary } from '../../entities';
+import { DateConstants, FinanceSummary } from '../../entities';
 import { MessageService } from '../../message.service';
 import { CommsService } from '../../comms.service';
 import * as XLSX from 'xlsx';
@@ -36,9 +36,9 @@ export class FinanceReportComponent implements OnInit {
 
   faFileExcel = faFileExcel;
 
-  months: string[] = [ 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'];
-  financeYears: string[] = [ 'FY20', 'FY21'];
-  financeYear = 'FY21';
+  months: string[] = DateConstants.MONTHS;
+  financeYears: string[] = DateConstants.FINANCE_YEARS;
+  financeYear = DateConstants.CURRENT_FINANCE_YEAR;
   financeSummaries: FinanceSummary[];
   includeNonCapitalised = false;
   projects = {};
