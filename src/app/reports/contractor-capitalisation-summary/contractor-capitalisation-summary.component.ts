@@ -19,7 +19,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from '../../message.service';
 import { CommsService } from '../../comms.service';
-import { ContractorCapitalisationSummary } from '../../entities';
+import { ContractorCapitalisationSummary, DateConstants } from '../../entities';
 import { faFileExcel } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -30,12 +30,12 @@ import { faFileExcel } from '@fortawesome/free-solid-svg-icons';
 export class ContractorCapitalisationSummaryComponent implements OnInit {
   faFileExcel = faFileExcel;
 
-  financeYears: string[] = [ 'FY20', 'FY21'];
-  financeYear = 'FY21';
+  months: string[] = DateConstants.MONTHS;
+  financeYears: string[] = DateConstants.FINANCE_YEARS;
+  financeYear = DateConstants.CURRENT_FINANCE_YEAR;
   contractorCapitalisationSummaries: ContractorCapitalisationSummary[];
 
   summaries = {};
-  months: string[] = [ 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'];
   employers: string[];
 
   constructor(private messageService: MessageService, private commsService: CommsService) { }

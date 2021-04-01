@@ -19,7 +19,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from '../../message.service';
 import { CommsService } from '../../comms.service';
-import { TimeBookingSummary } from '../../entities';
+import { DateConstants, TimeBookingSummary } from '../../entities';
 import { faFileExcel } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -30,8 +30,8 @@ import { faFileExcel } from '@fortawesome/free-solid-svg-icons';
 export class TimeBookingSummaryComponent implements OnInit {
   faFileExcel = faFileExcel;
 
-  financeYears: string[] = [ 'FY20', 'FY21'];
-  financeYear = 'FY21';
+  financeYears: string[] = DateConstants.FINANCE_YEARS;
+  financeYear = DateConstants.CURRENT_FINANCE_YEAR;
   timeBookingSummaries: TimeBookingSummary[];
 
   timeBookings = {};

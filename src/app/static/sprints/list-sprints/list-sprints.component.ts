@@ -56,13 +56,14 @@ export class ListSprintsComponent implements OnInit {
   }
 
   generateSprints(): void {
-    this.commsService.generateSprints()
-    .subscribe(() => {
-      this.messageService.add("Sprint generation: complete");
-      this.downloadSprints();
-    }, error => { 
-      this.messageService.add("Error: " + JSON.stringify(error));
-    });
+    this.messageService.add("Generate Sprint button clicked, but disabled, so won't do anything");
+//    this.commsService.generateSprints()
+//    .subscribe(() => {
+//      this.messageService.add("Sprint generation: complete");
+//      this.downloadSprints();
+//    }, error => { 
+//      this.messageService.add("Error: " + JSON.stringify(error));
+//    });
   }
 
 }

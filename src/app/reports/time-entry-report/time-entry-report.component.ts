@@ -23,6 +23,7 @@ import { ColDef } from 'ag-grid-community';
 import { CommsService } from 'src/app/comms.service';
 import { FinanceSummary } from 'src/app/entities';
 import { MessageService } from 'src/app/message.service';
+import { DateConstants } from 'src/app/entities';
 
 @Component({
   selector: 'app-time-entry-report',
@@ -38,9 +39,9 @@ export class TimeEntryReportComponent implements OnInit {
   rowData: {budgetLinesName: string, peopleName:string}[] = [];
 
 
-  months: string[] = [ 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'];
-  financeYears: string[] = [ 'FY20', 'FY21'];
-  financeYear = 'FY21';
+  months: string[] = DateConstants.MONTHS;
+  financeYears: string[] = DateConstants.FINANCE_YEARS;
+  financeYear = DateConstants.CURRENT_FINANCE_YEAR;
   financeSummaries: FinanceSummary[];
   includeNonCapitalised = false;
   projects = {};

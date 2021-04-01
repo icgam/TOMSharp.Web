@@ -17,7 +17,7 @@
 
 
 import { Component, OnInit } from '@angular/core';
-import { Scenario } from '../../entities';
+import { DateConstants, Scenario } from '../../entities';
 import { CommsService } from '../../comms.service';
 import { MessageService } from 'src/app/message.service';
 import { faPlus, faEllipsisH, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
@@ -34,8 +34,8 @@ export class ScenarioAdminComponent implements OnInit {
   faPlus = faPlus;
   faEllipsisH = faEllipsisH;
   faTimesCircle = faTimesCircle;
-  financeYears: string[] = [ 'FY20', 'FY21'];
-
+  financeYears: string[] = DateConstants.FINANCE_YEARS;
+  
   scenarios: Scenario[];
 
   constructor(private router: Router, private commsService: CommsService, private messageService: MessageService) { }

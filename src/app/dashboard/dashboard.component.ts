@@ -19,7 +19,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommsService } from '../comms.service';
 import { MessageService } from '../message.service';
-import { SprintSummary } from '../entities';
+import { DateConstants, SprintSummary } from '../entities';
 import { FormsModule, FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { faSync } from '@fortawesome/free-solid-svg-icons';
 
@@ -35,8 +35,8 @@ export class DashboardComponent implements OnInit {
 
   sprints: SprintSummary[];
   buttonsDisabled: boolean = false;
-  financeYears: string[] = [ 'FY20', 'FY21'];
-  financeYear = 'FY21';
+  financeYears: string[] = DateConstants.FINANCE_YEARS;
+  financeYear = DateConstants.CURRENT_FINANCE_YEAR;
 
   constructor(private messageService: MessageService, private commsService: CommsService, private formBuilder: FormBuilder) { }
 

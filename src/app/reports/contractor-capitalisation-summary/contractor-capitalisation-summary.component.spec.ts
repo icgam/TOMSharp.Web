@@ -116,7 +116,7 @@ describe('Contractor Capitalisation Summary', () => {
   });
 
   it('default financeYear', () => {
-    expect(component.financeYear).toBe("FY21");
+    expect(component.financeYear).toBe("FY22");
   });
 
   it('download data', () => {
