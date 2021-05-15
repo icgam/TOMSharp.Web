@@ -22,7 +22,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ListPeopleComponent } from './static/people/list-people/list-people.component';
 import { EditPersonComponent } from './static/people/edit-person/edit-person.component';
 import { ListSprintsComponent } from './static/sprints/list-sprints/list-sprints.component';
-import { ListFinanceProjectMappingsComponent } from './static/financeprojectmappings/list-finance-project-mappings/list-finance-project-mappings.component';
 import { FinanceReportComponent } from './reports/finance-report/finance-report.component';
 import { TimeBookingSummaryComponent } from './reports/time-booking-summary/time-booking-summary.component';
 import { ContractorCapitalisationSummaryComponent } from './reports/contractor-capitalisation-summary/contractor-capitalisation-summary.component';
@@ -53,9 +52,6 @@ const routes: Routes = [ {
   }, {
     path: 'list-sprints',
     component: ListSprintsComponent
-  }, {
-    path: 'list-finance-project-mappings',
-    component: ListFinanceProjectMappingsComponent
   }, {
     path: 'time-booking-summary',
     component: TimeBookingSummaryComponent

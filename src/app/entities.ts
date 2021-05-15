@@ -54,13 +54,6 @@ export class TimeBookingSummary {
     financeYear: string;
 }
 
-export class FinanceProjectMapping {
-    id: number;
-    projectName: string;
-    type: string;
-    financeName: string;
-    capitalised: boolean;
-}
 
 export class SprintSummary {
     name: string;

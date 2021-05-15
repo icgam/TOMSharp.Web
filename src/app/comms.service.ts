@@ -21,7 +21,7 @@ import { MessageService } from './message.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AppConfig } from './app-config';
-import { Person, Sprint, FinanceSummary, TimeBookingSummary, FinanceProjectMapping, SprintSummary, ContractorCapitalisationSummary, TimeBookingException, Forecast, ForecastEntry, Scenario, Project, BudgetLine } from './entities';
+import { Person, Sprint, FinanceSummary, TimeBookingSummary, SprintSummary, ContractorCapitalisationSummary, TimeBookingException, Forecast, ForecastEntry, Scenario, Project, BudgetLine } from './entities';
 
 @Injectable({
   providedIn: 'root'
@@ -38,7 +38,6 @@ export class CommsService {
   baseActionsUrl = this.baseUrl + '/actions/';
   baseFinanceSummaryUrl = this.baseUrl + '/FinanceSummary/';
   baseTimeBookingSummaryUrl = this.baseUrl + '/TimeBookingSummary/';
-  baseFinanceProjectMappingsUrl = this.baseUrl + '/financeprojectmappings';
   baseSprintSummaryUrl = this.baseUrl + '/SprintSummary/';
   baseContractorCapitalisationSummaryUrl = this.baseUrl + '/ContractorCapitalisationSummary/';
   baseTimeBookingExceptionsUrl = this.baseUrl + '/TimeBookingExceptions/';
@@ -221,19 +220,6 @@ export class CommsService {
   updateSprint(sprint: Sprint): Observable<string> {
     this.messageService.add("Comms: updating Sprint: " + sprint);
     return this.http.put<string>(this.baseSprintsUrl + sprint.id, sprint);
-  }
-
-  getFinanceProjectMappings(): Observable<FinanceProjectMapping[]> {
-    return this.http.get<FinanceProjectMapping[]>(this.baseFinanceProjectMappingsUrl);
-  }
-
-  getFinanceProjectMappingById(id: number): Observable<FinanceProjectMapping> {
-    return this.http.get<FinanceProjectMapping>(this.baseFinanceProjectMappingsUrl + id);
-  }
-
-  updateFinanceProjectMapping(mapping: FinanceProjectMapping): Observable<string> {
-    this.messageService.add("Comms: updating FinanceProjectMapping: " + mapping);
-    return this.http.put<string>(this.baseFinanceProjectMappingsUrl + mapping.id, mapping);
   }
 
   downloadTimeEntries(sprintName: string): Observable<any> {

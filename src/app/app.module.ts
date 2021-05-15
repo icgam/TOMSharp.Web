@@ -32,7 +32,6 @@ import { ListSprintsComponent } from './static/sprints/list-sprints/list-sprints
 import { FormsModule } from '@angular/forms';
 import { FinanceReportComponent } from './reports/finance-report/finance-report.component';
 import { TimeBookingSummaryComponent } from './reports/time-booking-summary/time-booking-summary.component';
-import { ListFinanceProjectMappingsComponent } from './static/financeprojectmappings/list-finance-project-mappings/list-finance-project-mappings.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ContractorCapitalisationSummaryComponent } from './reports/contractor-capitalisation-summary/contractor-capitalisation-summary.component';
 import { AgGridModule } from 'ag-grid-angular';
@@ -128,7 +127,6 @@ export function authFactory(msal: MsalService, http: HttpClient): AuthService {
     ListSprintsComponent,
     FinanceReportComponent,
     TimeBookingSummaryComponent,
-    ListFinanceProjectMappingsComponent,
     ContractorCapitalisationSummaryComponent,
     TimeBookingExceptionsComponent,
     ForecastAdminComponent,
