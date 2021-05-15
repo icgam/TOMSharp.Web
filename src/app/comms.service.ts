@@ -50,8 +50,8 @@ export class CommsService {
   
   public loginUrl = this.baseUrl + '/People';
 
-  getProjects(): Observable<Project[]> {
-    return this.http.get<Project[]>(this.baseProjectsUrl);
+  getProjects(financeYear: string): Observable<Project[]> {
+    return this.http.get<Project[]>(this.baseProjectsUrl + "FinanceYear/" + financeYear);
   }
 
   updateProject(project: Project): Observable<string> {
@@ -59,8 +59,8 @@ export class CommsService {
     return this.http.put<string>(this.baseProjectsUrl + project.id, project);
   }
 
-  getBudgetLines(): Observable<BudgetLine[]> {
-    return this.http.get<BudgetLine[]>(this.baseBudgetLinesUrl);
+  getBudgetLines(financeYear: string): Observable<BudgetLine[]> {
+    return this.http.get<BudgetLine[]>(this.baseBudgetLinesUrl + "FinanceYear/" + financeYear);
   }
 
   addBudgetLine(budgetLine: BudgetLine): Observable<BudgetLine> {

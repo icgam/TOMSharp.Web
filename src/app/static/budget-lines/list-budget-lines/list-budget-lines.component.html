@@ -22,6 +22,12 @@
             <span class="display-4">Budget Lines</span>
             <fa-icon size="2x" title="Add Budget Line" [icon]="faPlus" (click)="addNewBudgetLine()" style="cursor: pointer;"></fa-icon>
         </div>
+        <div class="col">
+            <select class="form-control" id="financeYear" [(ngModel)]="financeYear" (change)="getBudgetLines()">
+                <option>Choose Finance Year</option>
+                <option *ngFor="let year of financeYears">{{year}}</option>
+            </select>
+        </div>
     </div>
     <div class="row">
         <div class="col">

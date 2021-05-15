@@ -17,7 +17,7 @@
 
 
 import { Component, OnInit } from '@angular/core';
-import { BudgetLine } from 'src/app/entities';
+import { BudgetLine, DateConstants } from 'src/app/entities';
 import { CommsService } from 'src/app/comms.service';
 import { Observable } from 'rxjs';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -30,6 +30,9 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 export class ListBudgetLinesComponent implements OnInit {
 
   faPlus = faPlus;
+
+  financeYears: string[] = DateConstants.FINANCE_YEARS;
+  financeYear = DateConstants.CURRENT_FINANCE_YEAR;
 
   columnDefs = [
     {headerName: 'Name', field: 'name'},
@@ -57,7 +60,10 @@ export class ListBudgetLinesComponent implements OnInit {
   constructor(private commsService: CommsService) { }
 
   ngOnInit(): void {
-    this.budgetLines = this.commsService.getBudgetLines();
+    this.getBudgetLines();
+  }
+  getBudgetLines(): void {
+    this.budgetLines = this.commsService.getBudgetLines(this.financeYear);
   }
 
   addNewBudgetLine(): void {

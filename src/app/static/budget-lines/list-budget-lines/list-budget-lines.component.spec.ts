@@ -23,6 +23,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { AppConfig } from 'src/app/app-config';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ListBudgetLinesComponent } from './list-budget-lines.component';
+import { FormsModule } from '@angular/forms';
 
 describe('ListBudgetLinesComponent', () => {
   let component: ListBudgetLinesComponent;
@@ -42,7 +43,8 @@ describe('ListBudgetLinesComponent', () => {
         AgGridModule,
         HttpClientModule,
         ToastrModule.forRoot(),
-        FontAwesomeModule
+        FontAwesomeModule,
+        FormsModule
       ],
       providers: [
         {

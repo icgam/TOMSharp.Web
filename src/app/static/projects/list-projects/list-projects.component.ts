@@ -17,7 +17,7 @@
 
 
 import { Component, OnInit } from '@angular/core';
-import { Project, BudgetLine } from 'src/app/entities';
+import { Project, BudgetLine, DateConstants } from 'src/app/entities';
 import { CommsService } from '../../../comms.service';
 import { Observable } from 'rxjs';
 import { ListBudgetLinesComponent } from '../../budget-lines/list-budget-lines/list-budget-lines.component';
@@ -29,6 +29,9 @@ import { ListBudgetLinesComponent } from '../../budget-lines/list-budget-lines/l
 })
 export class ListProjectsComponent implements OnInit {
 
+  financeYears: string[] = DateConstants.FINANCE_YEARS;
+  financeYear = DateConstants.CURRENT_FINANCE_YEAR;
+
   budgetLines: BudgetLine[];
   budgetLineIds: number[] = [];
   budgetLinesRefData = {};
@@ -36,6 +39,7 @@ export class ListProjectsComponent implements OnInit {
   columnDefs = [
     {headerName: 'Name', field: 'name'},
     {headerName: 'Toggl Code', field: 'timeEntryName'},
+    {headerName: 'Finance Year', field: 'financeYear'},
     {headerName: 'Budget Line', field: 'budgetLineId',
       cellEditor: 'agSelectCellEditor',
       cellEditorParams: {
@@ -81,13 +85,19 @@ export class ListProjectsComponent implements OnInit {
   constructor(private commsService: CommsService) { }
 
   ngOnInit(): void {
-    this.commsService.getBudgetLines().subscribe(data => {
-      this.budgetLines = data;
+    this.getProjects();
+  }
+  
+  getProjects(): void {
+    this.commsService.getBudgetLines(this.financeYear).subscribe(data => {
+      Object.keys(this.budgetLinesRefData).forEach(key => delete this.budgetLinesRefData[key]);
+      while(this.budgetLineIds.length > 0) this.budgetLineIds.pop();
+      this.budgetLines = data.sort((a, b) => a.name.localeCompare(b.name));
       this.budgetLines?.map(bl => bl.id).forEach(id => this.budgetLineIds.push(id));
       this.budgetLines.forEach(budgetLine => {
         this.budgetLinesRefData[budgetLine.id] = budgetLine.name;
       })
-      this.projects = this.commsService.getProjects();
+      this.projects = this.commsService.getProjects(this.financeYear);
     });
   }
 

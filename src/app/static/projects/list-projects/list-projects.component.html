@@ -21,6 +21,12 @@
         <div class="col">
             Projects
         </div>
+        <div class="col">
+            <select class="form-control" id="financeYear" [(ngModel)]="financeYear" (change)="getProjects()">
+                <option>Choose Finance Year</option>
+                <option *ngFor="let year of financeYears">{{year}}</option>
+            </select>
+        </div>
     </div>
     <div class="row">
         <div class="col">

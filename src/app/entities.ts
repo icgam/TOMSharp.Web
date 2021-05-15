@@ -138,6 +138,7 @@ export class Project {
     financeName: string;
     capitalised: boolean;
     activity: string;
+    financeYear: string;
 }
 
 export class DateConstants {

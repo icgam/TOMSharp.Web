@@ -18,6 +18,7 @@
 
 import { HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import { AgGridModule } from 'ag-grid-angular';
 import { ToastrModule } from 'ngx-toastr';
 import { AppConfig } from 'src/app/app-config';
@@ -41,7 +42,8 @@ describe('ListProjectsComponent', () => {
       imports: [
         AgGridModule,
         HttpClientModule,
-        ToastrModule.forRoot()
+        ToastrModule.forRoot(),
+        FormsModule
       ],
       providers: [
         {
