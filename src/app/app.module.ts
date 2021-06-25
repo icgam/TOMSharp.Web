@@ -68,6 +68,7 @@ import { ListBudgetLinesComponent } from './static/budget-lines/list-budget-line
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TimeEntryReportComponent } from './reports/time-entry-report/time-entry-report.component';
+import { ImportExportComponent } from './static/import-export/import-export.component';
 
 
 
@@ -136,7 +137,8 @@ export function authFactory(msal: MsalService, http: HttpClient): AuthService {
     ScenarioReportComponent,
     ListProjectsComponent,
     ListBudgetLinesComponent,
-    TimeEntryReportComponent
+    TimeEntryReportComponent,
+    ImportExportComponent
   ],
   imports: [
     AgGridModule.withComponents([]),

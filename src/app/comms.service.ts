@@ -18,7 +18,7 @@
 
 import { Injectable } from '@angular/core';
 import { MessageService } from './message.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AppConfig } from './app-config';
 import { Person, Sprint, FinanceSummary, TimeBookingSummary, SprintSummary, ContractorCapitalisationSummary, TimeBookingException, Forecast, ForecastEntry, Scenario, Project, BudgetLine } from './entities';
@@ -46,6 +46,7 @@ export class CommsService {
   baseProjectsUrl = this.baseUrl + '/Projects/';
   baseBudgetLinesUrl = this.baseUrl + '/BudgetLines/';
   baseTimeEntryReportUrl = this.baseUrl + '/TimeEntryReport/';
+  baseExportUrl = this.baseUrl + '/ImportExport/';
   
   public loginUrl = this.baseUrl + '/People';
 
@@ -232,4 +233,25 @@ export class CommsService {
     return this.http.get<string>(this.baseActionsUrl + "GenerateSprints");
   }
 
+  downloadAllData(): void {
+    let url = this.baseExportUrl;
+    window.open(url, "_blank");
+  }
+
+  importAllData(files): Observable<HttpEvent<any>> {
+    if (files.length === 0)
+      return;
+  
+    const formData = new FormData();
+  
+    for (const file of files) {
+      formData.append(file.name, file);
+    }
+  
+    const uploadReq = new HttpRequest('POST', this.baseExportUrl, formData, {
+      reportProgress: true,
+    });
+  
+    return this.http.request(uploadReq);
+  }
 }

@@ -33,6 +33,7 @@ import { ScenarioEditComponent } from './forecast/scenario-edit/scenario-edit.co
 import { ListProjectsComponent } from './static/projects/list-projects/list-projects.component';
 import { ListBudgetLinesComponent } from './static/budget-lines/list-budget-lines/list-budget-lines.component';
 import { TimeEntryReportComponent } from './reports/time-entry-report/time-entry-report.component';
+import { ImportExportComponent } from './static/import-export/import-export.component';
 
 const routes: Routes = [ {
     path: 'dashboard',
@@ -86,6 +87,9 @@ const routes: Routes = [ {
     path: '',
     redirectTo: '/dashboard',
     pathMatch: 'full'
+  }, {
+    path: 'import-export',
+    component: ImportExportComponent
   }
 
 ];
