@@ -14,7 +14,12 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 **/
+import { HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ToastrModule } from 'ngx-toastr';
+import { AppConfig } from 'src/app/app-config';
 
 import { ImportExportComponent } from './import-export.component';
 
@@ -22,9 +27,29 @@ describe('ImportExportComponent', () => {
   let component: ImportExportComponent;
   let fixture: ComponentFixture<ImportExportComponent>;
 
+  let appConfig: AppConfig = {
+    baseApiUrl: '',
+    auth: null,
+    cache: null,
+    scopes: null,
+    resources: null,
+    version: null
+  };
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ImportExportComponent ]
+      declarations: [ ImportExportComponent ],
+      imports: [
+        HttpClientModule,
+        ToastrModule.forRoot(),
+        FontAwesomeModule,
+        FormsModule
+      ],
+      providers: [
+        {
+          provide: AppConfig,
+          useValue: appConfig
+        }
+      ]
     })
     .compileComponents();
   }));
