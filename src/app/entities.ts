@@ -136,6 +136,6 @@ export class Project {
 
 export class DateConstants {
     public static MONTHS: string[] = [ 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'];
-    public static FINANCE_YEARS: string[] = [ 'FY20', 'FY21', 'FY22'];
+    public static FINANCE_YEARS: string[] = [ 'FY20', 'FY21', 'FY22', 'FY23'];
     public static CURRENT_FINANCE_YEAR = 'FY22';
 }
